@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include "hostFE.h"
 #include "helper.h"
+
 #define CL_KERNEL_NAME "convolution"
 void hostFE(int filterWidth, float *filter, int imageHeight, int imageWidth,
             float *inputImage, float *outputImage, cl_device_id *device,
@@ -24,8 +25,9 @@ void hostFE(int filterWidth, float *filter, int imageHeight, int imageWidth,
     status = clSetKernelArg(kernel, 0, sizeof(cl_mem), &inputImageBuffer);
     status |=clSetKernelArg(kernel, 1, sizeof(cl_mem), &filterBuffer);
     status |=clSetKernelArg(kernel, 2, sizeof(cl_mem), &outputImageBuffer);
-    status |=clSetKernelArg(kernel, 3, sizeof(cl_float), &imageWidth);
-    status |=clSetKernelArg(kernel, 4, sizeof(cl_float), &filterWidth);
+    status |=clSetKernelArg(kernel, 3, sizeof(cl_int), &imageWidth);
+    status |=clSetKernelArg(kernel, 4, sizeof(cl_int), &imageHeight);
+    status |=clSetKernelArg(kernel, 5, sizeof(cl_int), &filterWidth);
     CHECK(status, "clSetKernelArg");
 
     const size_t global_work_size [2] = {imageWidth, imageHeight};
