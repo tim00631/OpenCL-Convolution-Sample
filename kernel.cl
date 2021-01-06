@@ -2,9 +2,9 @@ __kernel void convolution(
     const __global float * inputImage,
     const __global float * filter,
     __global float * outputImage,
-    __global const int imageWidth,
-    __global const int imageHeight,
-    __global const int filterWidth)
+    const int imageWidth,
+    const int imageHeight,
+    const int filterWidth)
 {
     // const int id = get_global_id(0);
     int i = get_global_id(0); // horizontal
