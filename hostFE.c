@@ -31,7 +31,7 @@ void hostFE(int filterWidth, float *filter, int imageHeight, int imageWidth,
     CHECK(status, "clSetKernelArg");
 
     const size_t global_work_size [2] = {imageWidth, imageHeight};
-    const size_t local_work_size [2] = {8 ,8};
+    const size_t local_work_size [2] = {16 ,16};
     status = clEnqueueNDRangeKernel(queue, kernel, 2, NULL, global_work_size, local_work_size, 0, NULL, NULL);
     CHECK(status, "clEnqueueNDRangeKernel");
     status = clEnqueueReadBuffer(queue, outputImageBuffer, CL_TRUE, 0, sizeof(float)* imageWidth * imageHeight, outputImage, 0, NULL, NULL);
