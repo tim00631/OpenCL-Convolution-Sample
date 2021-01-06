@@ -12,7 +12,6 @@ __kernel void convolution(
     // printf("[%d][%d]\n", j, i);
     int halffilterSize = filterWidth / 2;
     float sum = 0;
-    // printf("halffilterSize:%d\n", halffilterSize);
     for (int l = -halffilterSize; l <= halffilterSize; l++) // vertical
     {
         // const int idxIntmp = (j + l) * imageWidth + i;
